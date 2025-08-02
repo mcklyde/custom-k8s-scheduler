@@ -1,0 +1,26 @@
+[project]
+name = "pod-scheduler"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "McKlyde",email = "mcklydelag@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "kubernetes (>=33.1.0,<34.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "pod_scheduler", from = "src"}]
+
+[tool.poetry.scripts]                                                           
+scheduler = "pod_scheduler:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+

@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gang-job
+  namespace: default
+spec:
+  parallelism: 2             # Number of pods to run in parallel
+  completions: 2             # Total number of pods to complete
+  template:
+    metadata:
+      labels:
+        job: gang-job        # Label used by your gang scheduler to group pods
+    spec:
+      schedulerName: ssi
+      containers:
+        - name: worker
+          image: ubuntu:latest
+          command: ["/bin/bash", "-c", "sleep infinity"]
+      restartPolicy: Never
